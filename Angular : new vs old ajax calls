@@ -1,0 +1,61 @@
+Prior to Angular 1.4, promises in Angular were resolved using the .success() and .error() methods:
+
+    $http.get("some/url/")
+        .success(function(){...})
+        .error(function(){...});
+
+After 1.4 and above, .then() began to be used to resolve promises.
+
+When I was new to Angular, I was stung by this change many times.
+
+
+It so happens that in the documentation, the Angular guys only define the .success and .error methods with pseudo-code: 
+
+
+    $http.get('/someUrl').success(successCallback);
+    $http.post('/someUrl', data).success(successCallback);
+
+
+Reading this, I assumed that this successCallback is the response I had to catch. So, naturally, I began to write naive code like:
+
+
+    function myFunction() {
+
+        MyService.getMyData()
+            .success(function(response){
+                myVariable = response;
+            }
+    }
+
+
+(Naturally, this is bad code, since 1. it relies on inheritance, and 2. the first argument of the success() callback function is NOT called response; it's called data!)
+
+Then, after 1.4, when I started to comply with the warnings and began to use then(), I started to get lots of "undefined"s. To fix it I found I had to do
+
+
+    myService.getMyData()
+        .then(function(response){
+            myVariable = response.data;
+        }
+
+Okay, so what's bad in that? Just use response.data from now on, right? Wrong. The thing was, I was dealing with a lot of old code too, which was filled with .success() and error() calls. 
+Not knowing the difference then, I always got confused as to where the problem of the undefineds lay.
+
+
+Here's the reason:
+
+The old success() and error() functions have not just one but four parameters:
+
+    .success(data, status, headers, config) {
+        // ... Play with them
+    }
+
+When I used to have these, the data parameter was renamed to response for me by JavaScript, and technically I could assign the value of data to a variable that I'd process later, so I never realized the error.
+
+But since then() returns the whole response that has more info alongwith the data, and since the attributes I needed from the response were almost always named things other than config or headers or status, I got undefined.
+
+
+Moral of the story is this:
+
+1. Never assume that since x replaces y, x must be interchangeable with y. Not true.
+2. Read the manual!
