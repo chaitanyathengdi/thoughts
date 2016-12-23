@@ -1,0 +1,9 @@
+the [[ test ]] construct is not a command in bash, but a builtin. It enables the user to use more conventional techniques to write conditional statements. 
+
+That means that &&, ||, <, or > operators are interpreted the usual way in a [[ ]] construct.
+
+It also allows comparing non-decimal numbers using -eq(or similar):
+
+15 equals 15 in decimal.
+015 equals 15 in octal, i.e. 13.
+0x015 equals 15 in hex, i.e. 21.

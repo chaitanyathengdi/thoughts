@@ -1,0 +1,9 @@
+1. If a header is written in the first line of a file(not even comments are allowed before it):
+
+<!DOCTYPE html>
+
+then the markup is considered to be of HTML5. Else it's HTML4.
+
+2. <script> and <link> tags don't require the type="text/javascript"/type="text/css" attributes respectively in HTML5.
+The only type of stylesheet is CSS anyway, and "text/javascript" is considered default for <script> tags in HTML5.
+In HTML4, however, it's required to be specified.

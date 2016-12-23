@@ -1,0 +1,3 @@
+the this pointer is NOT the same in Java and JavaScript!
+
+In Java it refers to the object, every time. In Javascript, it refers to the variable in whose body it is. That could also mean inside a function. So set this to a variable in JavaScript before using it.

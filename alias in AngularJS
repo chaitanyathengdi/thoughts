@@ -1,0 +1,20 @@
+The alias is used to assign the controller to a variable to be used in scope.
+
+If you do this:
+
+<ELEMENT ng-controller="myController as ctrl"> </ELEMENT>
+
+Then you can use the variables defined in the controller inside the scope; this helps avoid problems with prototypal inheritance. It also makes the code ready for Angular 2, as they have removed $scope in Angular 2.
+
+The alias abc is used as:
+
+{{ abc.variableName }} 
+
+instead of just {{ variableName }} in which case it's $scope.variableName.
+
+An alias can be equivalently defined in the controller as:
+
+$scope.aliasName = this;
+
+
+Using aliases helps especially in cases where ng-model is used.

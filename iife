@@ -1,0 +1,53 @@
+How to Avoid Global Scope Pollution by Using Immediately Invoked Function Expression?
+
+Declaring global scope variables in JavaScript is a bad practice, and is often referred to as global scope pollution. One of the solutions to avoid global scope pollution is to use Immediately Invoked Function Expression, or IIFE for short. IIFE basic code example looks like this:
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|    (function () {
+|        // Do fun stuff
+|    })()
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+A function declared in that way is an anonymous function expression, and is immediately and automatically invoked.
+
+How does IIFE work, and how is an anonymous function immediately invoked? The pair of parentheses surrounding the anonymous function turns it into a function expression, or variable expression. The result is an unnamed function expression with its own scope.
+
+Use of the IIFE is very simple. When you create IIFE, every single variable definition inside that function will only exist in that scope, like a modularization or isolation of the data. IIFE declaration example can look like this:
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|    (function(){
+|        var my_data = '';
+|        var init = function(){
+|
+|			// Do something
+|        };
+|
+|	  init();
+|
+|    })(); //This IIFE will be invoked and executed automatically, without the need to call by yourself
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+This way, there is no need to declare global scope variables at all. Every variable declared inside the anonymous function is easily accessible inside its own scope, and in the same time it is keeping the global naming space clean. This is important because it is avoiding any potential collisions with another library, or even with our own code.
+
+Beside the most popular use for IIFE to have a clean global scope, one other benefit of using IIFE is that it keeps the code inside isolated modules. How? With the IIFE any var declared inside isn’t accessible from the outside. The IIFE is just a function, so it can return anything, as every function does, which enables you to create your own modules like this:
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|   var mySuperModule = (function(){
+|       var myVar = ‘Some string’;
+|    
+|       var privateFunction = function (){
+|   	    //DO something
+|       };
+|       return {
+|   	    getMyVar: function(){
+|   	    	return myVar
+|           }
+|       };
+|   })();
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Now the variable myVar only exists inside the mySuperModule, which can even have private and public methods.
+
+Many libraries use this technique (like jQuery), and it is recommended to be used at least in the top-level of your applications.
+
+To learn more on the subject, you can read Ben Alman’s article, Mastering the Module Pattern, or Essential JavaScript Namespacing Patterns.

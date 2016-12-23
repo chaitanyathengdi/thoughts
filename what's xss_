@@ -1,0 +1,4 @@
+XSS stands for cross-site-scripting vulnerability. 
+It can have the user insterting scripts in text boxes for malicious reasons, and is a security risk.
+
+That's why we sometimes see " replaced with &quot; and > replaced with &gt;.  

@@ -1,0 +1,3 @@
+In traditional web design, the client sends a request to the server, and in return, the server sends a webpage.
+
+However, Angular doesn't work like that. In Angular, the server receieves and sends just data. The rendering of the page and other things are done at the client side.

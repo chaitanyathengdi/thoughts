@@ -1,0 +1,23 @@
+First way:
+var x = function()
+{
+.
+.
+.
+.
+};
+
+Second way:
+
+function x ()
+{
+.
+.
+.
+.
+}
+
+The first case has the function as a variable, and requires using a semicolon at 
+the end of the body.
+The second case has the function by itself, and requires no semicolon at the 
+end.

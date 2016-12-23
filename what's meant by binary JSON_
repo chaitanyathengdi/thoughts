@@ -1,0 +1,2 @@
+BSON(binary JSON) is a binary representation of JSON. In addition to the JSON-like object, it stores more info(such as total size of document) with the object. 
+BSON also adds more data types which are not there in JSON, especially BinData and Date data types.

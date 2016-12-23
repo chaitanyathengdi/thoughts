@@ -1,0 +1,5 @@
+span has display property of inline, whereas p has display property of block.
+when we use p to display text, we have to allocate separate block to it, causing formatting of the outer inline element(if any) to be messed up.
+So, use nothing or span tags to write content in something that has external formatting.
+
+Avoid displaying block element inside inline element. Block element goes into a new line, causing problems.

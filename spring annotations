@@ -1,0 +1,5 @@
+It seems annotations are used to feed between-the-lines info to the application, but doesn't affect the code per-se.
+
+Some notable things:
+
+@Controller and @RestController - @RestController will only return data. You'll have to use @Controller for returning responses or other things. 

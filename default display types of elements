@@ -1,0 +1,3 @@
+Standard text inherits the display of its parent tag.
+<div>, <p>, <h#> have block display type. 
+<span> and <img> have inline display type.
