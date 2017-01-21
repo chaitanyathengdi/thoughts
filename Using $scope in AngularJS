@@ -1,0 +1,17 @@
+According to the AngularJS dev guide on model (https://github.com/angular/code.angularjs.org/blob/master/1.0.0/docs-1.0.0/partials/guide/dev_guide.mvc.understanding_model.html),
+a model is any data that is a property of the $scope object. This is the only requirement for a model, and it can be either explicitly
+defined or implicitly.
+So basically, if you have any element on your template that's tied to a variable on the controller with a {{}} or an ng-model directive or
+anything of that kind, then that variable will be the element's model.
+
+If you have an ng-controller contruct in your template, then by the above, anything you define in the controller with 
+"$scope.varname = Something" will be a model and any element such as 'input', 'select' or 'textarea' will have its own implicit model attached to the controller's '$scope'.
+
+In the template, such a model will then be able to be accessed with '{{}}' like '{{ varname }}' and will render as 'Something', i.e. the
+brackets replaced with the value contained in the model. This is quite simple to understand for a novice programmer; basically writing 'x'
+in {{}} gets replaced with the value of '$scope.x'.
+
+But does this mean that this is the best way to define a model in your controller?
+Personally, I don't think so.
+
+In the dev guide, it is also said that a JavaScript object ceases to be a model when all scopes that have a property referencing the object become stale.
