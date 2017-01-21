@@ -5,7 +5,8 @@ So basically, if you have any element on your template that's tied to a variable
 anything of that kind, then that variable will be the element's model.
 
 If you have an ng-controller contruct in your template, then by the above, anything you define in the controller with 
-"$scope.varname = Something" will be a model and any element such as 'input', 'select' or 'textarea' will have its own implicit model attached to the controller's '$scope'.
+"$scope.varname = Something" will be a model and any element such as 'input', 'select' or 'textarea' will have its own implicit model
+attached to the controller's '$scope'.
 
 In the template, such a model will then be able to be accessed with '{{}}' like '{{ varname }}' and will render as 'Something', i.e. the
 brackets replaced with the value contained in the model. This is quite simple to understand for a novice programmer; basically writing 'x'
@@ -14,4 +15,6 @@ in {{}} gets replaced with the value of '$scope.x'.
 But does this mean that this is the best way to define a model in your controller?
 Personally, I don't think so.
 
-In the dev guide, it is also said that a JavaScript object ceases to be a model when all scopes that have a property referencing the object become stale.
+In the dev guide, it is also said that a JavaScript object ceases to be a model when all scopes that have a property referencing the
+object become stale. That means for directives that actually delete an element from the DOM, such as ng-if, ng-switch or ng-repeat, a new
+scope will be created according to given conditions.
