@@ -1,0 +1,46 @@
+When one tries to do a return statement from a try/catch block, then unexpected things happen.
+In the code below, there are return statements from try, catch as well as finally blocks:
+----
+    public class Dummy {
+        public static void main(String[] args) {
+            System.out.println(fun());
+        }
+
+        static int fun() {
+            int value = 1;
+            try {
+                System.out.println("open file stream");
+                if(true) throw new Exception(); // forcing return from catch block
+                System.out.println("returning from try");
+                return value;
+            } catch(Exception e) {
+                System.out.println("Caught exception");
+                System.out.println("Returning from catch");
+                return 2;
+            } finally {
+                System.out.println("finally is executed");
+                System.out.println("returning from finally");
+                value = 3;
+                // return value;
+            }
+        }
+    }
+----
+One may be led to believe that the code in the finally block will not be executed since the control is returned to the calling function main() from the catch block. 
+
+Whether or not there are return statements from try/catch blocks, the code in the finally block is always executed. But in this case, since the control is returning from the catch block, a value of 2 is returned to the main() method. The output of the above program is:
+
+----
+open file stream
+Caught exception
+Returning from catch
+finally is executed
+returning from finally
+2
+----
+The value 2 is already returned to the main() function, so the new value is not returned.
+However, if the last line is uncommented then the value 3 is returned, because the control returns from the finally block.
+
+BUT, it should be noted that this is not a good practice; the IDE gives a warning here that the finally clause cannot complete normally.
+
+Reference: https://stackoverflow.com/questions/3643002/
